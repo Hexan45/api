@@ -1,0 +1,20 @@
+{
+    "name": "hexan/api",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "src\\": "src/",
+            "core\\": "core/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "slim/slim": "4.x-dev",
+        "slim/psr7": "dev-master",
+        "ext-pdo": "*",
+        "mongodb/mongodb": "v1.15.x-dev"
+    },
+    "require-dev": {
+        "vlucas/phpdotenv": "^5.5@dev"
+    }
+}
