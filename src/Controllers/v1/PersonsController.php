@@ -1,18 +1,17 @@
 <?php
 
-namespace src\Controllers;
-
-use Psr\Http\Message\ResponseInterface as Response;
-use Psr\Http\Message\ServerRequestInterface as Request;
+namespace src\Controllers\v1;
 
 use core\MVC\Controller;
 use core\MVC\Validation\Validator;
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
 
 class PersonsController extends Controller
 {
     public function getAll(Request $request, Response $response, array $args) : Response
     {
-        $personsModel = $this->makeModel('Persons');
+        $personsModel = $this->makeModel('v1\\Persons');
         $payload = $personsModel->all();
 
         $response->getBody()->write(json_encode($payload));
@@ -22,7 +21,7 @@ class PersonsController extends Controller
 
     public function getSingle(Request $request, Response $response, array $args) : Response
     {
-        $personsModel = $this->makeModel('Persons');
+        $personsModel = $this->makeModel('v1\\Persons');
 
         $payload = $personsModel->find(['id', '=', ':id'], [':id' => $args['personID']]);
 
@@ -43,7 +42,7 @@ class PersonsController extends Controller
 
     public function storageData(Request $request, Response $response, array $args) : Response
     {
-        $personsModel = $this->makeModel('Persons');
+        $personsModel = $this->makeModel('v1\\Persons');
 
         $validator = new Validator($request->getParsedBody(), [
            'firstName' => 'required|min:3|max:20',
@@ -92,7 +91,7 @@ class PersonsController extends Controller
 
     public function updateSingle(Request $request, Response $response, array $args) : Response
     {
-        $persons = $this->makeModel('Persons', $args['personID']);
+        $persons = $this->makeModel('v1\\Persons', $args['personID']);
 
         $validator = new Validator($request->getParsedBody(), [
             'firstName' => 'min:3|max:20',
@@ -146,7 +145,7 @@ class PersonsController extends Controller
 
     public function deleteSingle(Request $request, Response $response, array $args) : Response
     {
-        $persons = $this->makeModel('Persons', $args['personID']);
+        $persons = $this->makeModel('v1\\Persons', $args['personID']);
 
         if ($persons->delete() === false)
         {

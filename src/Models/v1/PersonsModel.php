@@ -1,6 +1,6 @@
 <?php
 
-namespace src\Models;
+namespace src\Models\v1;
 
 use core\MVC\Model;
 

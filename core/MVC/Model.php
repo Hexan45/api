@@ -74,7 +74,7 @@ abstract class Model
 
     public function all() : array|object|bool
     {
-        $result = self::$db->query("SELaECT * FROM $this->tableName");
+        $result = self::$db->query("SELECT * FROM $this->tableName");
 
         return $result->execute() ? $result->fetchData(DatabaseExecutorInterface::FETCH_ASSOC) : false;
     }

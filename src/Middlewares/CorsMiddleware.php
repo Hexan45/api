@@ -23,6 +23,6 @@ class CorsMiddleware
             ->withHeader('Access-Control-Allow-Methods', implode(', ', $allowedMethods))
             ->withHeader('Access-Control-Allow-Headers', $requestHeaders);
 
-        return $response->withStatus(401);
+        return $response;
     }
 }

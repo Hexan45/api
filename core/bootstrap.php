@@ -29,8 +29,7 @@
     //Middleware for parsing body in PUT or PATCH methods
     $api->add(new BodyParserMiddleware());
 
-    //TODO: Change displayErrorDatils to false on production
-    $errorMiddleware = $api->addErrorMiddleware(true, true, true);
+    $errorMiddleware = $api->addErrorMiddleware(Config::$configData['errors']['error_details'], Config::$configData['errors']['log_error'], Config::$configData['errors']['log_details']);
     $errorHandler = $errorMiddleware->getDefaultErrorHandler();
     $errorHandler->registerErrorRenderer('application/json', JsonErrorHandler::class);
     $errorHandler->forceContentType('application/json');
