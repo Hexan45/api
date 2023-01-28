@@ -58,7 +58,7 @@ abstract class Model
         $id = $this->toSave[$this->primaryKey];
 
         $binds = array_values($this->toSave);
-        array_push($binds, $id);
+        $binds[] = $id;
 
         $result = self::$db->query("UPDATE $this->tableName SET $set WHERE $this->primaryKey = ?", $binds);
 

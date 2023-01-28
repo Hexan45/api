@@ -9,19 +9,19 @@
     //PSR-4 autoloading from composer
     require_once dirname(__DIR__) . '/vendor/autoload.php';
 
-    //Displaying errors turn on
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
-
     //Initialize dotenv configuration
     (Dotenv::createImmutable(dirname(__DIR__)))->safeLoad();
 
-    //New app instance
-    $api = AppFactory::create();
-
     //Loading Property design pattern
     Config::load();
+
+    //Displaying errors turn on
+    ini_set('display_errors', (integer)Config::$configData['errors']['php_parser']);
+    ini_set('display_startup_errors', (integer)Config::$configData['errors']['php_parser']);
+    error_reporting(E_ALL);
+
+    //New app instance
+    $api = AppFactory::create();
 
     //Slim middleware settings
     $api->addRoutingMiddleware();

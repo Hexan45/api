@@ -1,10 +1,22 @@
 <?php
-    require_once(dirname(__DIR__) . '/Helpers/functions.php');
+require_once(dirname(__DIR__) . '/Helpers/functions.php');
 
-    return [
+return match (envData('APPLICATION_STATUS'))
+{
+    'development' => [
         'errors' => [
-            'error_details' => envData('DISPLAY_ERROR_DETAILS', false),
-            'log_error' => envData('LOG_ERRORS', false),
-            'log_details' => envData('LOG_ERROR_DETAILS', false)
+            'php_parser' => true,
+            'error_details' => true,
+            'log_error' => true,
+            'log_details' => true
         ]
-    ];
+    ],
+    'production' => [
+        'errors' => [
+            'php_parser' => false,
+            'error_details' => false,
+            'log_error' => false,
+            'log_details' => false
+        ]
+    ]
+};

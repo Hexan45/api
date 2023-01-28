@@ -9,6 +9,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 class PersonsController extends Controller
 {
+
     public function getAll(Request $request, Response $response, array $args) : Response
     {
         $personsModel = $this->makeModel('v1\\Persons');
